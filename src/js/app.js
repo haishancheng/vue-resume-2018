@@ -1,7 +1,8 @@
 var app = new Vue({
   el: '#app',
   data: {
-    editingName: false,
+    signInVisible: false,
+    signUpVisible: false,
     resume: {
       name:'SeaMountCity',
       gender:'男',
@@ -13,11 +14,47 @@ var app = new Vue({
   },
   methods: {
     onEdit(key, value){
-      console.log(key,value)
       this.resume[key] = value
+    },
+    save(){
+      var currentUser = AV.User.current()
+      if (!currentUser) {
+        this.signInVisible = true
+      }
+      else {
+        this.saveResume()
+      }
+    },
+    saveResume(){
+
     }
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
