@@ -1,0 +1,97 @@
+/*css reset*/
+* {margin: 0;padding: 0;}
+*, *::before, *::after{box-sizing: border-box}
+a{text-decoration: none; color: inherit}
+ul,ol{list-style: none;}
+body{font-size: 18px;}
+button{font-size: inherit;}
+.clearfix::after{content: '';display: block;clear:both;}
+
+@media (min-width: 500px) {
+  .page{
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+  }
+}
+
+/*page > aside*/
+.page > aside{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /*flex不缩小*/
+  flex-shrink: 0;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,.2)
+}
+.page > aside > .upper{
+  display: flex;
+  flex-direction: column;
+}
+.page > aside  button{
+  padding: 3px 10px;
+  margin: 20px;
+}
+
+/*page > main*/
+.page > main{
+  flex-grow: 1;
+}
+.page > main > .resume{
+  max-width: 800px;
+  margin: 0 auto;
+}
+.resume > section{
+  margin: 50px 0;
+}
+.resume > section h1,
+.resume > section h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/*section.profile*/
+.resume > section.profile > p{
+  text-align: center;
+}
+.resume > section.profile > p.job{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/*section.skills*/
+.resume > section.skills > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.resume > section.skills > ul > li{
+  border: 1px solid #ccc;
+  width: 48%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/*section.projects*/
+.resume > section.projects > ol > li {
+  margin: 30px 0;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.resume > section.projects > ol > li > header{
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.resume > section.projects > ol > li > header .name,
+.resume > section.projects > ol > li > header .link{
+  float: left;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+
+.resume > section.projects > ol > li > header .keywords{
+  float: right;
+}
