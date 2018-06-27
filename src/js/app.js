@@ -9,7 +9,13 @@ var app = new Vue({
       birthday: '开始模板',
       jobTitle: '开始模板',
       phone: '开始模板',
-      email: '开始模板'
+      email: '开始模板',
+      skills: [
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        // {name: '请填写技能名称', description: '请填写技能描述'},
+      ]
     },
     signUpData: {
       email: '',
@@ -22,7 +28,28 @@ var app = new Vue({
   },
   methods: {
     onEdit(key, value) {
-      this.resume[key] = value
+      /* 解析key => skills[0].name*/
+
+      /* 1.skills[0].name => skills.0.name */
+      let reg = /\[(\d+)\]/g
+      //match是reg匹配出的结果
+      key = key.replace(reg, function(match, number){
+        return '.' + number
+      })
+
+      /* 2.skills.0.name  => ["skills", "0", "name"] */
+      let keys = key.split('.')
+      console.log(keys)
+
+      /* 3.找到resume["skills"]["0"]["name"] */
+      let result = this.resume
+      for(let i = 0; i < keys.length; i++){
+        if(i === keys.length-1){
+          result[keys[i]] = value
+        }else{
+          result = result[keys[i]]
+        }
+      }
     },
     onSignUp() {
       let user = new AV.User()
@@ -55,7 +82,7 @@ var app = new Vue({
     onSignOut() {
       AV.User.logOut()
       alert('注销成功')
-      this.resume = {name: '注销成功', gender: '注销成功', birthday: '注销成功', jobTitle: '注销成功', phone: '注销成功', email: '注销成功'}
+      // this.resume = {name: '注销成功', gender: '注销成功', birthday: '注销成功', jobTitle: '注销成功', phone: '注销成功', email: '注销成功'}
     },
     onSave() {
       var currentUser = AV.User.current()
@@ -79,9 +106,12 @@ var app = new Vue({
     getResume(id) {
       var user = new AV.Query('User')
       user.get(id).then((newUser) => {
-        this.resume = newUser.attributes.resume || {name: '姓名', gender: '性别', birthday: '出生年月', jobTitle: '职位', phone: '电话', email: '邮箱'}
+        Object.assign(this.resume, newUser.attributes.resume)
       }, (error) => {
       })
+    },
+    addSkill(){
+      this.resume.skills.push({name: '请填写技能名称', description: '请填写技能描述'})
     }
   }
 })
@@ -92,7 +122,7 @@ var app = new Vue({
  * 2.VUE会和JSON.stringify一样返回toJSON中的值，所以在html中{{AV.User.current()}}会和console.log(AV.User.current())
  *   显示的不一样，html中的{{AV.User.current()}}只会显示toJSON中返回的属性，比如它显示的是ObjectId，而console.log(AV.User.current())中显示的是id
  */
-console.log(AV.User.current())
+// console.log(AV.User.current())
 if (AV.User.current()) {
   //不需要app.methods.getResume，Vue会自动复制一份到上层
   app.getResume(AV.User.current().id)

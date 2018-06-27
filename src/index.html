@@ -11,18 +11,19 @@
 <div class="page" id="app">
   <aside>
     <div class="upper">
-      <button @click="save">保存</button>
+      <button @click="onSave">保存</button>
       <button>分享</button>
       <button>打印</button>
       <button>换肤</button>
     </div>
     <div class="down">
-      <button @click="signOut">登出</button>
+      <button @click="onSignOut" v-show="AV.User.current()" v-cloak>登出</button>
     </div>
   </aside>
   <main>
     <div class="resume">
       <section class="profile">
+        <!--{{AV.User.current()}} 和console.log(AV.User.current())显示的不一样-->
         <h1>
           <editable-span v-bind:value="resume.name" v-on:edit="onEdit('name', $event)"></editable-span>
         </h1>
@@ -39,23 +40,14 @@
       <section class="skills">
         <h2>技能</h2>
         <ul>
-          <li>
-            <span class="name">静态页面制作</span>
-            <div class="description">完美实现设计稿</div>
-          </li>
-          <li>
-            <span class="name">静态页面制作</span>
-            <div class="description">完美实现设计稿</div>
-          </li>
-          <li>
-            <span class="name">静态页面制作</span>
-            <div class="description">完美实现设计稿</div>
-          </li>
-          <li>
-            <span class="name">静态页面制作</span>
-            <div class="description">完美实现设计稿</div>
+          <li v-for="skill,index in resume.skills">
+            <editable-span class="name" v-bind:value="skill.name" v-on:edit="onEdit(`skills[${index}].name`, $event)"></editable-span>
+            <div class="description">
+              <editable-span v-bind:value="skill.description" v-on:edit="onEdit(`skills[${index}].description`, $event)"></editable-span>
+            </div>
           </li>
         </ul>
+        <button v-on:click="addSkill">添加技能</button>
       </section>
       <section class="projects">
         <h2>项目经历</h2>
@@ -97,37 +89,37 @@
     </div>
   </main>
   <div class="signIn" v-show="signInVisible" v-cloak>
-    <form @submit.prevent="signIn">
+    <form @submit.prevent="onSignIn">
       <h2>登录</h2>
       <button type="button" @click="signInVisible = false">关闭</button>
       <div class="row">
         <label>邮箱</label>
-        <input type="text" v-model="signInData.email" autocomplete="true">
+        <input type="text" v-model="signInData.email" autocomplete="on">
       </div>
       <div class="row">
         <label>密码</label>
-        <input type="password" v-model="signInData.password" autocomplete="true">
+        <input type="password" v-model="signInData.password" autocomplete="on">
       </div>
       <div class="actions">
-        <button type="submit" @click="signInVisible = false">提交</button>
+        <button type="submit">提交</button>
         <a href="#" @click="signUpVisible = true; signInVisible = false">注册</a>
       </div>
     </form>
   </div>
   <div class="signUp" v-show="signUpVisible" v-cloak>
-    <form @submit.prevent="signUp">
+    <form @submit.prevent="onSignUp">
       <h2>注册</h2>
       <button type="button" @click="signUpVisible = false; ">关闭</button>
       <div class="row">
         <label>邮箱</label>
-        <input type="text" v-model="signUpData.email">
+        <input type="text" v-model="signUpData.email" autocomplete="on">
       </div>
       <div class="row">
         <label>密码</label>
-        <input type="password" v-model="signUpData.password">
+        <input type="password" v-model="signUpData.password" autocomplete="on">
       </div>
       <div class="actions">
-        <button type="submit" @click="signUpVisible = false">提交</button>
+        <button type="submit">提交</button>
         <a href="#" @click="signInVisible = true; signUpVisible = false">登录</a>
       </div>
     </form>
