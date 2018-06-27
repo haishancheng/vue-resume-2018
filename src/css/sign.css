@@ -8,6 +8,9 @@
   transform: translate(-50%, -50%);
   background: #ddd;
 }
-div[v-cloak]{
+.signUp{
+  background: green;
+}
+[v-cloak]{
   display: none;
 }
