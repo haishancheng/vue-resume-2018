@@ -39,6 +39,7 @@ button{font-size: inherit;}
 /*page > main*/
 .page > main{
   flex-grow: 1;
+  overflow: auto;
 }
 .page > main > .resume{
   max-width: 800px;

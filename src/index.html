@@ -45,6 +45,7 @@
             <div class="description">
               <editable-span v-bind:value="skill.description" v-on:edit="onEdit(`skills[${index}].description`, $event)"></editable-span>
             </div>
+            <span v-if="index >= 1" @click="removeSkill(index)">删除</span>
           </li>
         </ul>
         <button v-on:click="addSkill">添加技能</button>
@@ -52,39 +53,21 @@
       <section class="projects">
         <h2>项目经历</h2>
         <ol>
-          <li>
+          <li v-for="project,index in resume.projects">
             <header class="clearfix">
-              <h3 class="name">我的简历</h3>
-              <span class="link">http://xxx/xxx</span>
-              <span class="keywords">css3、jQuery、响应式</span>
+              <h3 class="name">
+                <editable-span v-bind:value="project.name" @edit="onEdit(`projects[${index}].name`, $event)"></editable-span>
+              </h3>
+              <editable-span class="link" :value="project.link" @edit="onEdit(`projects[${index}].link`, $event)"></editable-span>
+              <editable-span class="keywords" :value="project.keywords" @edit="onEdit(`projects[${index}].keywords`, $event)">css3、jQuery、响应式</editable-span>
             </header>
-            <p class="description">我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的</p>
-          </li>
-          <li>
-            <header class="clearfix">
-              <h3 class="name">我的简历</h3>
-              <span class="link">http://xxx/xxx</span>
-              <span class="keywords">css3、jQuery、响应式</span>
-            </header>
-            <p class="description">我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的</p>
-          </li>
-          <li>
-            <header class="clearfix">
-              <h3 class="name">我的简历</h3>
-              <span class="link">http://xxx/xxx</span>
-              <span class="keywords">css3、jQuery、响应式</span>
-            </header>
-            <p class="description">我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的</p>
-          </li>
-          <li>
-            <header class="clearfix">
-              <h3 class="name">我的简历</h3>
-              <span class="link">http://xxx/xxx</span>
-              <span class="keywords">css3、jQuery、响应式</span>
-            </header>
-            <p class="description">我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的我是怎么做这个项目的</p>
+            <p class="description">
+              <editable-span v-bind:value="project.description" v-on:edit="onEdit(`projects[${index}].description`, $event)"></editable-span>
+            </p>
+            <span v-if="index>=1" @click="removeProject(index)">删除项目</span>
           </li>
         </ol>
+        <button @click="addProject">添加项目</button>
       </section>
     </div>
   </main>
