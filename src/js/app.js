@@ -3,6 +3,8 @@ var app = new Vue({
   data: {
     signInVisible: false,
     signUpVisible: false,
+    shareVisible: false,
+    skinPickerVisible: false,
     resume: {
       name: '开始模板',
       gender: '开始模板',
@@ -26,7 +28,15 @@ var app = new Vue({
     signInData: {
       email: '',
       password: ''
-    }
+    },
+    shareLink: '不知道',
+    isShareMode: false,
+  },
+  watch: {
+    // 'resume.phone': function(newValue, oldValue){
+    //   console.log('oldValue',oldValue)
+    //   console.log('newValue',newValue)
+    // }
   },
   methods: {
     onEdit(key, value) {
@@ -41,7 +51,6 @@ var app = new Vue({
 
       /* 2.skills.0.name  => ["skills", "0", "name"] */
       let keys = key.split('.')
-      console.log(keys)
 
       /* 3.找到resume["skills"]["0"]["name"] */
       let result = this.resume
@@ -107,10 +116,12 @@ var app = new Vue({
     },
     getResume(id) {
       var user = new AV.Query('User')
-      user.get(id).then((newUser) => {
+      return user.get(id).then((newUser) => {
         Object.assign(this.resume, newUser.attributes.resume)
-      }, (error) => {
-      })
+      }).catch(function(error) {
+        alert('查询的用户的id有错误，未查询到结果');
+      });
+
     },
     addSkill(){
       this.resume.skills.push({name: '请填写技能名称', description: '请填写技能描述'})
@@ -123,10 +134,25 @@ var app = new Vue({
     },
     removeProject(index){
       this.resume.projects.splice(index, 1)
+    },
+    print(){
+      window.print()
     }
   }
 })
-/* ☆☆☆☆☆☆
+
+
+
+
+let search = location.href
+let regex = /user_id=([^&]+)/
+let matches = search.match(regex)
+if(matches){
+  app.isShareMode = true
+  app.getResume(matches[1]).then(()=>{console.log(3)},(error)=>{console.log(4)})
+}else{
+  app.isShareMode = false
+  /* ☆☆☆☆☆☆
  * 1.toJSON用法：
  *   var obj = {name: '1', toJSON: function(){return {hello: 'hello'}}}
  *   JSON.stringify(obj) ===> "{"hello":"hello"}"
@@ -134,9 +160,13 @@ var app = new Vue({
  *   显示的不一样，html中的{{AV.User.current()}}只会显示toJSON中返回的属性，比如它显示的是ObjectId，而console.log(AV.User.current())中显示的是id
  */
 // console.log(AV.User.current())
-if (AV.User.current()) {
-  //不需要app.methods.getResume，Vue会自动复制一份到上层
-  app.getResume(AV.User.current().id)
+
+  if (AV.User.current()) {
+    app.getResume(AV.User.current().id)
+    //不需要app.methods.getResume，Vue会自动复制一份到上层
+    app.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
+  }
+
 }
 
 

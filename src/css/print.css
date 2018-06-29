@@ -1,0 +1,15 @@
+.page{
+  padding: 20px;
+}
+.page > aside{
+  display: none;
+}
+.skills button,
+.projects button{
+  display: none;
+}
+
+.skills button,
+.projects button{
+  display: none;
+}

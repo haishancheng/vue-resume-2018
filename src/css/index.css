@@ -6,6 +6,9 @@ ul,ol{list-style: none;}
 body{font-size: 18px;}
 button{font-size: inherit;}
 .clearfix::after{content: '';display: block;clear:both;}
+[v-cloak]{
+  display: none;
+}
 
 @media (min-width: 500px) {
   .page{

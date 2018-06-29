@@ -1,4 +1,3 @@
-.signIn,
 .signUp{
   position: fixed;
   height: 400px;
@@ -10,7 +9,4 @@
 }
 .signUp{
   background: green;
-}
-[v-cloak]{
-  display: none;
 }
