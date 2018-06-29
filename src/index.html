@@ -75,8 +75,8 @@
       </section>
     </div>
   </main>
-  <sign-in v-show="signInVisible" @close-sign-in="signInVisible=false" @to-sign-up="signInVisible=false;signUpVisible=true"></sign-in>
-  <sign-up  v-show="signUpVisible"></sign-up>
+  <sign-in v-show="signInVisible" @close-sign-in="signInVisible=false" @to-sign-up="signInVisible=false;signUpVisible=true" @get-resume="getResume($event)"></sign-in>
+  <sign-up  v-show="signUpVisible"@close-sign-up="signUpVisible=false" @to-sign-in="signInVisible=true;signUpVisible=false" @get-resume="getResume($event)"></sign-up>
   <share v-bind:share-link="shareLink" v-show="shareVisible" @close-share="shareVisible=false"></share>
   <skin-picker v-show="skinPickerVisible" @close-skin-picker="skinPickerVisible=false"></skin-picker>
 </div>

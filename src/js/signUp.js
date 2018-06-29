@@ -3,7 +3,7 @@ Vue.component('signUp',{
     <div class="signUp">
       <form @submit.prevent="onSignUp" v-cloak>
         <h2>注册</h2>
-        <button type="button" @click="signUpVisible=false;">关闭</button>
+        <button type="button" @click="$emit('close-sign-up')">关闭</button>
         <div class="row">
           <label>邮箱</label>
           <input type="text" v-model="signUpData.email" autocomplete="on">
@@ -34,9 +34,9 @@ Vue.component('signUp',{
       user.setPassword(this.signUpData.password)
       user.setEmail(this.signUpData.email)
       user.signUp().then((loggedInUser) => {
-        this.signUpVisible = false
+        this.$emit('close-sign-up')
         alert('注册成功')
-        this.getResume(loggedInUser.id)
+        this.$emit('get-resume', loggedInUser.id)
       }, function (error) {
         alert(error.rawMessage)
         // if (error.code === 125) {

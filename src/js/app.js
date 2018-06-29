@@ -57,12 +57,11 @@ var app = new Vue({
     onSignOut() {
       AV.User.logOut()
       alert('注销成功')
-      // this.resume = {name: '注销成功', gender: '注销成功', birthday: '注销成功', jobTitle: '注销成功', phone: '注销成功', email: '注销成功'}
+      location.reload()
     },
     onSave() {
       var currentUser = AV.User.current()
       if (!currentUser) {
-        console.log(1)
         this.signInVisible = true
       }
       else {

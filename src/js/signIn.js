@@ -33,7 +33,8 @@ Vue.component('signIn', {
       AV.User.logIn(this.signInData.email, this.signInData.password).then((loggedInUser) => {
         // this.signInVisible = false
         this.$emit('close-sign-in')
-        this.getResume(loggedInUser.id)
+        // this.getResume(loggedInUser.id)
+        this.$emit('get-resume', loggedInUser.id)
       }, (error) => {
         if (error.code === 211) {
           alert('邮箱不存在')
