@@ -21,14 +21,6 @@ var app = new Vue({
         {name: '请填写项目名称', link: 'http://...', keywords: '请填写关键词', description: '请填写项目描述'},
       ]
     },
-    signUpData: {
-      email: '',
-      password: ''
-    },
-    signInData: {
-      email: '',
-      password: ''
-    },
     shareLink: '不知道',
     isShareMode: false,
   },
@@ -62,34 +54,6 @@ var app = new Vue({
         }
       }
     },
-    onSignUp() {
-      let user = new AV.User()
-      user.setUsername(this.signUpData.email)
-      user.setPassword(this.signUpData.password)
-      user.setEmail(this.signUpData.email)
-      user.signUp().then((loggedInUser) => {
-        this.signUpVisible = false
-        alert('注册成功')
-        this.getResume(loggedInUser.id)
-      }, function (error) {
-        alert(error.rawMessage)
-        // if (error.code === 125) {
-        //   alert('请输入正确的邮箱地址')
-        // }
-      })
-    },
-    onSignIn() {
-      AV.User.logIn(this.signInData.email, this.signInData.password).then((loggedInUser) => {
-        this.signInVisible = false
-        this.getResume(loggedInUser.id)
-      }, (error) => {
-        if (error.code === 211) {
-          alert('邮箱不存在')
-        } else if (error.code == 210) {
-          alert('邮箱和密码不破配')
-        }
-      })
-    },
     onSignOut() {
       AV.User.logOut()
       alert('注销成功')
@@ -98,6 +62,7 @@ var app = new Vue({
     onSave() {
       var currentUser = AV.User.current()
       if (!currentUser) {
+        console.log(1)
         this.signInVisible = true
       }
       else {
