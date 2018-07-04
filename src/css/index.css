@@ -18,28 +18,28 @@ button{font-size: inherit;}
   }
 }
 
-header{
+.page > .app > header{
   padding: 8px 16px;
   color: #007bff;
   background-color: #e3f2fd;
 }
-header h1{
+.page > .app > header h1{
   font-size: 1.25rem;
   line-height: 36px;
 }
 
-header a{
+.page > .app > header a{
   float: right;
   border: 1px solid #007bff;
   padding: 5px 15px;
   border-radius: 5px;
 }
-header a:hover{
+.page > .app > header a:hover{
   color: white;
   background: #007bff;
 }
 
-.page > .resume{
+.page > .app .resume{
 
 }
 
