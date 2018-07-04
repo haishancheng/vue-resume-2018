@@ -6,7 +6,7 @@ window.App = {
         <!--<resume v-bind:resume="resume"></resume>-->
       <!--</main>-->
     <!--</div>-->
-      <div>
+      <div class="app">
         <app-header></app-header>
         <main>
           <resume v-bind:resume="resume"></resume>
