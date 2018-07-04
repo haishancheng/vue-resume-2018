@@ -1,10 +1,10 @@
-// html规范，标签不能有大写，因此写成sign-in
-Vue.component('signIn', {
+window.signIn = {
   template: `
     <div class="signIn" v-cloak>
       <form @submit.prevent="onSignIn">
         <h2>登录</h2>
-        <button type="button" @click="$emit('close-sign-in')">关闭</button>
+        <!--<button type="button" @click="$emit('close-sign-in')">关闭</button>-->
+        <router-link to="/">关闭</router-link>
         <div class="row">
           <label>邮箱</label>
           <input type="text" v-model="signInData.email" autocomplete="on">
@@ -15,7 +15,8 @@ Vue.component('signIn', {
         </div>
         <div class="actions">
           <button type="submit">提交</button>
-          <a href="#" @click="$emit('to-sign-up')">注册</a>
+          <!--<a href="#" @click="$emit('to-sign-up')">注册</a>-->
+          <router-link to="/signUp">注册</router-link>
         </div>
       </form>
     </div>
@@ -44,4 +45,8 @@ Vue.component('signIn', {
       })
     }
   }
-})
+}
+
+// html规范，标签不能有大写，因此写成sign-in
+Vue.component('signIn', window.signIn
+)

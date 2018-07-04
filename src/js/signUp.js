@@ -1,9 +1,10 @@
-Vue.component('signUp',{
+window.signUp = {
   template: `
     <div class="signUp">
       <form @submit.prevent="onSignUp" v-cloak>
         <h2>注册</h2>
-        <button type="button" @click="$emit('close-sign-up')">关闭</button>
+        <!--<button type="button" @click="$emit('close-sign-up')">关闭</button>-->
+        <router-link to="/">关闭</router-link>
         <div class="row">
           <label>邮箱</label>
           <input type="text" v-model="signUpData.email" autocomplete="on">
@@ -14,7 +15,8 @@ Vue.component('signUp',{
         </div>
         <div class="actions">
           <button type="submit">提交</button>
-          <a href="#" @click="$emit('to-sign-in')">登录</a>
+          <!--<a href="#" @click="$emit('to-sign-in')">登录</a>-->
+          <router-link to="/signIn">登录</router-link>
         </div>
       </form>
     </div>
@@ -45,4 +47,5 @@ Vue.component('signUp',{
       })
     }
   }
-})
+}
+Vue.component('signUp', window.signUp)
