@@ -9,8 +9,16 @@ window.App = {
       <div class="app">
         <app-header></app-header>
         <main>
-          <resume v-bind:resume="resume"></resume>
+          <resume v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>
         </main>
+        <footer>
+          <p class="author"><span>简历编辑器</span> by 海山城</p>
+          <p><a class="link" href="#">github.com/haishancheng.</a> All Rights Reserved.</p>
+          <p>© CopyRight 2018-xxxx</p>
+        </footer>
+        <transition name="bounce">
+          <prompt v-show="promptVisible" v-bind:prompt="prompt" @close-prompt="promptVisible = false"></prompt>
+        </transition>
       </div>
   `,
   data(){
@@ -20,20 +28,52 @@ window.App = {
         gender: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
         birthday: '1991-1-1',
         jobTitle: '前端开发工程师',
-        phone: '16666666666',
-        email: 'example@example.com',
+        contacts: [
+          {iconClass:'icon-phone', info: '16666666666'},
+          {iconClass: 'icon-email', info: 'example@example.com'},
+          {iconClass: 'icon-qq', info: '123456789'},
+          {iconClass: 'icon-wechat', info: 'wechatID'},
+          {iconClass: 'icon-blog', info: ' http://example.blog.com/'},
+          {iconClass: 'icon-github', info: 'https://github.com/example'},
+        ],
         skills: [
           {name: 'HTML', description: '熟练掌握HTML...'},
           {name: 'CSS', description: '熟练掌握CSS...'},
           {name: 'JavaScript', description: '熟练掌握JavaScript...'},
         ],
         projects: [
-          {name: 'HTML', link: 'http://...', keywords: 'HTML5', description: 'HTML作品'},
-          {name: 'CSS', link: 'http://...', keywords: 'CSS3', description: 'CSS作品'},
-          {name: 'JavaScript', link: 'http://...', keywords: 'ES6', description: 'JavaScript作品'},
+          {name: 'HTML', link: 'http://example.com', keywords: 'HTML5', description: 'HTML作品'},
+          {name: 'CSS', link: 'http://example.com', keywords: 'CSS3', description: 'CSS作品'},
+          {name: 'JavaScript', link: 'http://example.com', keywords: 'ES6', description: 'JavaScript作品'},
         ]
       },
+      promptVisible: false,
+      prompt: {
+        icon: '',
+        info: '',
+      },
     }
+  },
+  created: function () {
+    if(this.$router.history.current.params.message==="signUpSuccess"){
+      this.prompt.icon = '√'
+      this.prompt.info = '注册成功，开始编辑你的简历吧！'
+      this.promptVisible = true
+    }
+  },
+  methods:{
+    addSkill(){
+      this.resume.skills.push({name: '请填写技能名称', description: '请填写技能描述'})
+    },
+    removeSkill(index){
+      this.resume.skills.splice(index, 1)
+    },
+    addProject(){
+      this.resume.projects.push({name: '请填写项目名称', link: 'http://...', keywords: '请填写关键词', description: '请填写项目描述'})
+    },
+    removeProject(index){
+      this.resume.projects.splice(index, 1)
+    },
   }
   // data(){
   //   return {

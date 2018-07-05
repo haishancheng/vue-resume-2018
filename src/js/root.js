@@ -1,5 +1,5 @@
 const routes = [
-  { path: '/', component: window.App },
+  { name: '/', path: '/', component: window.App },
   { path: '/signIn', component: window.signIn },
   { path: '/signUp', component: window.signUp },
 ]
@@ -14,7 +14,12 @@ const router = new VueRouter({
 // 记得要通过 router 配置参数注入路由，
 // 从而让整个应用都有路由功能
 const app = new Vue({
-  router
+  router: router,
+  data(){
+    return {
+
+    }
+  }
 }).$mount('#root')
 
 

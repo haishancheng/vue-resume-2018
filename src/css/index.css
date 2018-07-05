@@ -11,57 +11,212 @@ button{font-size: inherit;}
 }
 
 @media (min-width: 500px) {
-  .page{
-    height: 100vh;
-    /*overflow: hidden;*/
-    /*display: flex;*/
-  }
-}
 
-.page > .app > header{
-  padding: 8px 16px;
+}
+/*.app header*/
+.app > header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 10px 16px;
   color: #007bff;
   background-color: #e3f2fd;
+  z-index: 10;
 }
-.page > .app > header h1{
+.app > header h1{
   font-size: 1.25rem;
   line-height: 36px;
 }
 
-.page > .app > header a{
+.app > header a{
   float: right;
   border: 1px solid #007bff;
   padding: 5px 15px;
   border-radius: 5px;
 }
-.page > .app > header a:hover{
+.app > header a:hover{
   color: white;
   background: #007bff;
 }
 
-.page > .app .resume{
-
+/*.app main*/
+.app > main{
+  margin-top: 56px;
+}
+.app > main > .resume{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.resume > section{
+  margin-top: 50px;
+}
+.resume > section.special{
+  margin-top: 20px;
+}
+.resume > section > .sectionTitle > h2{
+  text-align: center;
+  color: rgb(52, 58, 64);
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 2rem;
+}
+.resume > section > .sectionTitle > p{
+  text-align: center;
+  color: #007bff;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
-/*!*page > aside*!*/
-/*.page > aside{*/
-  /*width: 200px;*/
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*justify-content: space-between;*/
+/*section.profile*/
+.resume > section.profile > h1{
+  text-align: center;
+  font-size: 2.5rem;
+  color: #343a40;
+  font-weight:500;
+}
+.resume > section.profile > p{
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #007bff;
+}
+/*section.contacts*/
+.resume > section.contacts > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: #007bff;
+  font-size: 14px;
+  border: 1px solid #007bff;
+  border-radius:5px;
+  padding: 20px 10px;
+}
+.resume > section.contacts > ul > li{
+  width: 33%;
+  padding: 10px;
+  word-break: break-all;
+
+}
+.resume > section.contacts > ul > li > span {
+  margin-left: 10px;
+  color: #343a40;
+}
+
+/*section.skills && section.projects*/
+.resume > section.skills > ul,
+.resume > section.projects > ol{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.resume > section.skills > ul > li,
+.resume > section.projects > ol > li{
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  width: 48%;
+  background: #e3f2fd;
+  font-size: 1rem;
+  color: #343a40;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.resume > section.skills > ul > li > .name{
+  margin: 15px 10px;
+  color: #007bff;
+  font-weight: 700;
+  word-break: break-all;
+}
+.resume > section.skills > ul > li > .description,
+.resume > section.projects > ol > li > .description{
+  padding: 15px 10px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  flex-grow: 1;
+}
+
+/*section.projects*/
+.resume > section.projects > ol > li > header{
+  margin: 15px 10px;
+  color: #343a40;
+  display: flex;
   /*align-items: center;*/
-  /*!*flex不缩小*!*/
-  /*flex-shrink: 0;*/
-  /*border-right: 1px solid #ddd;*/
-  /*box-shadow: 0 0 1px 0 rgba(0,0,0,.2)*/
+  justify-content: space-between;
+}
+.resume > section.projects > ol > li > header> .name{
+  color: #007bff;
+  font-weight: 700;
+  word-break: break-all;
+  margin-right: 10px;
+}
+.resume > section.projects > ol > li > header> .link{
+  font-weight: 300;
+  font-size: 14px;
+  word-break: break-all;
+  margin-right: 10px;
+}
+.resume > section.projects > ol > li > header> .keywords{
+  /*color: #f8bb86;*/
+  font-size: 13px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/*color: #007bff;*/
+/*font-weight: 700;*/
+
+
+/*app > footer*/
+.app > footer{
+  text-align: center;
+  font-size: 12px;
+  color: #343a40;
+  font-weight: 300;
+  background: #f8f9fa;
+  padding: 20px 0;
+}
+.app > footer > .author{
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.app > footer > .author > span{
+  color: #007bff;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: normal;
+}
+.app > footer a.link{
+  color: #007bff;
+}
+.app > footer a.link:hover{
+  border-bottom: 1px solid #007bff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.resume > section.skills > ul > li > .removeSkill{*/
+  /*position: absolute;*/
+  /*right: 5px;*/
+  /*top: 0;*/
+  /*font-size: 1.5rem;*/
+  /*cursor: pointer;*/
+  /*color: #007bff;*/
 /*}*/
-/*.page > aside > .upper{*/
-  /*display: flex;*/
-  /*flex-direction: column;*/
-/*}*/
-/*.page > aside  button{*/
-  /*padding: 3px 10px;*/
-  /*margin: 20px;*/
+/*.resume > section.skills > ul > li > .removeSkill:hover{*/
+  /*color: #0069d9;*/
 /*}*/
 
 /*!*page > main*!*/
@@ -124,3 +279,7 @@ button{font-size: inherit;}
 /*.resume > section.projects > ol > li > header .keywords{*/
   /*float: right;*/
 /*}*/
+
+body{
+  overflow: auto;
+}

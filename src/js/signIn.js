@@ -2,23 +2,26 @@ window.signIn = {
   template: `
     <div class="signIn" v-cloak>
       <form @submit.prevent="onSignIn">
-        <h2>登录</h2>
-        <!--<button type="button" @click="$emit('close-sign-in')">关闭</button>-->
-        <router-link to="/">关闭</router-link>
+        <h2>简历编辑器</h2>
+        <p>New jobs, new lives</p>
+        <router-link class="close" to="/">x</router-link>
         <div class="row">
           <label>邮箱</label>
-          <input type="text" v-model="signInData.email" autocomplete="on">
+          <input placeholder="example@example.com" type="text" v-model="signInData.email" autocomplete="on">
         </div>
         <div class="row">
           <label>密码</label>
-          <input type="password" v-model="signInData.password" autocomplete="on">
+          <input placeholder="Enter password" type="password" v-model="signInData.password" autocomplete="on">
         </div>
         <div class="actions">
-          <button type="submit">提交</button>
-          <!--<a href="#" @click="$emit('to-sign-up')">注册</a>-->
-          <router-link to="/signUp">注册</router-link>
+          <button type="submit">登录</button>
+          <p>We'll never share your email with anyone else.</p>
         </div>
       </form>
+      <div class="toSignUp">
+        还没有账户？
+        <router-link to="/signUp">注册</router-link>
+      </div>
     </div>
   `,
   data: function () {

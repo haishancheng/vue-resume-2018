@@ -2,49 +2,88 @@ window.signUp = {
   template: `
     <div class="signUp">
       <form @submit.prevent="onSignUp" v-cloak>
-        <h2>注册</h2>
-        <!--<button type="button" @click="$emit('close-sign-up')">关闭</button>-->
-        <router-link to="/">关闭</router-link>
+        <h2>简历编辑器</h2>
+        <p>New jobs, new lives</p>
+        <router-link class="close" to="/">x</router-link>
         <div class="row">
           <label>邮箱</label>
-          <input type="text" v-model="signUpData.email" autocomplete="on">
+          <input placeholder="example@example.com" type="text" v-model="signUpData.email" autocomplete="on">
         </div>
         <div class="row">
           <label>密码</label>
-          <input type="password" v-model="signUpData.password" autocomplete="on">
+          <input placeholder="Enter password" type="password" v-model="signUpData.password" autocomplete="on">
+        </div>
+        <div class="row">
+          <label>确认密码</label>
+          <input placeholder="Confirm your password" type="password" v-model="signUpData.confirm" autocomplete="on">
         </div>
         <div class="actions">
-          <button type="submit">提交</button>
-          <!--<a href="#" @click="$emit('to-sign-in')">登录</a>-->
-          <router-link to="/signIn">登录</router-link>
+          <button type="submit">注册</button>
+          <p>Please remember your account and password, this site does not support the recovery.</p>
         </div>
       </form>
+      <div class="toSignUp">
+        已经有账户了？
+        <router-link to="/signIn">登录</router-link>
+      </div>
+      <transition name="bounce">
+        <prompt v-show="promptVisible" v-bind:prompt="prompt" @close-prompt="promptVisible = false"></prompt>
+      </transition>
     </div>
   `,
   data: function () {
     return {
+      promptVisible: false,
       signUpData: {
         email: '',
-        password: ''
-      }
+        password: '',
+        confirm: ''
+      },
+      prompt: {
+        icon: '',
+        info: '',
+      },
     }
   },
   methods: {
     onSignUp() {
+      if(!this.check()){return}
       let user = new AV.User()
       user.setUsername(this.signUpData.email)
       user.setPassword(this.signUpData.password)
       user.setEmail(this.signUpData.email)
       user.signUp().then((loggedInUser) => {
-        this.$emit('close-sign-up')
-        alert('注册成功')
-        this.$emit('get-resume', loggedInUser.id)
-      }, function (error) {
-        alert(error.rawMessage)
-        // if (error.code === 125) {
-        //   alert('请输入正确的邮箱地址')
-        // }
+        // this.showPrompt('√', '注册成功，开始编辑你的简历吧！', )
+        // this.$router.push('/')
+        this.$router.push({name:'/', params:{message:'signUpSuccess'}})
+      }, (error) => {
+        if (error.code === 125) {
+          this.showPrompt('!', '请输入正确的邮箱地址！')
+        } else if(error.code === 203) {
+          this.showPrompt('✘', '此电子邮箱已经被占用！', )
+        }
       })
+    },
+    check(){
+      if(this.signUpData.email === ''){
+        this.showPrompt('!', '邮箱不能为空！', )
+        return false
+      } else if(this.signUpData.password === ''){
+        this.showPrompt('!', '密码不能为空！')
+        return false
+      }  else if(this.signUpData.confirm === '') {
+        this.showPrompt('!', '请确认密码！')
+        return false
+      } else if(this.signUpData.password !== this.signUpData.confirm){
+        this.showPrompt('!', '请确保两次输入的密码一致！')
+        return false
+      }
+      return true
+    },
+    showPrompt(icon, info){
+      this.prompt.icon = icon
+      this.prompt.info = info
+      this.promptVisible = true
     }
   }
 }
