@@ -1,7 +1,8 @@
 /*.app main .resume*/
 .app > main > .resume{
-  max-width: 1000px;
+  max-width: 1040px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 .resume > section{
   margin-top: 50px;
@@ -55,11 +56,18 @@
   width: 33%;
   padding: 10px;
   word-break: break-all;
-
 }
 .resume > section.contacts > ul > li > span {
   margin-left: 10px;
   color: #343a40;
+}
+.resume > section.contacts > ul > li > a {
+  margin-left: 8px;
+  color: #343a40;
+}
+.resume > section.contacts > ul > li > a:hover {
+  color: #007bff;
+  border-bottom: 1px solid #007bff;
 }
 
 /*section.skills && section.projects*/
@@ -98,7 +106,7 @@
 
 /*section.projects*/
 .resume > section.projects > ol > li > header{
-  margin: 15px 10px;
+  margin: 15px 10px 0;
   color: #343a40;
   display: flex;
   justify-content: space-between;
@@ -106,17 +114,34 @@
 .resume > section.projects > ol > li > header> .name{
   color: #007bff;
   font-weight: 700;
-  word-break: break-all;
-  margin-right: 10px;
-}
-.resume > section.projects > ol > li > header> .link{
-  font-weight: 300;
-  font-size: 14px;
-  word-break: break-all;
+  word-break: break-word;
   margin-right: 10px;
 }
 .resume > section.projects > ol > li > header> .keywords{
   font-size: 13px;
   font-weight: 600;
   word-break: break-word;
+}
+.resume > section.projects > ol > li > .link{
+  font-weight: 300;
+  font-size: 14px;
+  word-break: break-all;
+  margin: 10px;
+  color: #007bff;
+}
+.resume > section.projects > ol > li > .link >a:hover{
+  border-bottom: 1px solid #007bff;
+}
+
+@media screen and (max-width: 768px){
+  .resume > section.contacts > ul > li{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .resume > section.skills > ul > li,
+  .resume > section.projects > ol > li{
+    width: 100%;
+  }
 }

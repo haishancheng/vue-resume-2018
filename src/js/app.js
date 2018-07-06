@@ -1,7 +1,7 @@
 window.App = {
   template: `
       <div class="app">
-        <app-header v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume"></app-header>
+        <app-header v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume" @on-print="print" @on-share=""></app-header>
         <main>
           <resume v-show="!isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>
           <edit-resume v-show="isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)" @add-skill="addSkill()" @remove-project="removeProject($event)" @add-project="addProject()"></edit-resume>
@@ -21,6 +21,7 @@ window.App = {
     return {
       isEdit:false,
       isLoginIn: false,
+      shareLink: '',
       resume: {
         name: '你好',
         brief: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
@@ -75,25 +76,27 @@ window.App = {
   created: function () {
     if(AV.User.current()){
       this.isLoginIn = true
+      this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
       this.getResume(AV.User.current().id)
     }
 
     let params = this.$router.history.current.params
     if(params.message==="signUpSuccess"){
-      this.prompt.icon = '√'
-      this.prompt.info = '注册成功，开始编辑你的简历吧！'
-      this.promptVisible = true
+      this.showPrompt('√', '注册成功，开始编辑你的简历吧！')
       AV.User.logIn(params.email, params.password).then((loggedInUser) => {
         this.isLoginIn = true
+        this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
         this.getResume(loggedInUser.id)
       })
     }
     if(params.message==="signInSuccess"){
       AV.User.logIn(params.email, params.password).then((loggedInUser) => {
         this.isLoginIn = true
+        this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
         this.getResume(loggedInUser.id)
       })
     }
+    console.log('shareLink', this.shareLink)
   },
   methods:{
     addSkill(){
@@ -117,14 +120,15 @@ window.App = {
       });
     },
     onSignOut() {
-      AV.User.logOut().then(()=>{
-        console.log(AV.User.current())
-        this.isLoginIn =  false
-        this.prompt.icon = '√'
-        this.prompt.info = '注销成功！'
-        this.promptVisible = true
-        Object.assign(this.resume, this.resumeExample)
-      })
+      if(this.isEdit){
+        this.showPrompt('!', '保存之后再注销才可以哦~')
+      } else{
+        AV.User.logOut().then(()=>{
+          this.isLoginIn =  false
+          this.showPrompt('√', '注销成功！')
+          Object.assign(this.resume, this.resumeExample)
+        })
+      }
     },
     saveResume() {
       let {id} = AV.User.current()
@@ -137,6 +141,18 @@ window.App = {
         console.log('数据保存失败')
       })
     },
+    print(){
+      if(this.isEdit){
+        this.showPrompt('!', '保存之后才能打印~！')
+      }else{
+        window.print()
+      }
+    },
+    showPrompt(icon, info){
+      this.prompt.icon = icon
+      this.prompt.info = info
+      this.promptVisible = true
+    }
   }
   // data(){
   //   return {

@@ -1,15 +1,6 @@
-.page{
-  padding: 20px;
-}
-.page > aside{
+.app > header{
   display: none;
 }
-.skills button,
-.projects button{
-  display: none;
-}
-
-.skills button,
-.projects button{
+.app > footer{
   display: none;
 }

@@ -4,7 +4,7 @@
 a{text-decoration: none; color: inherit}
 ul,ol{list-style: none;}
 body{font-size: 18px;}
-button{font-size: inherit;}
+button{font-size: inherit; outline: none}
 .clearfix::after{content: '';display: block;clear:both;}
 [v-cloak]{
   display: none;
@@ -98,91 +98,6 @@ button{font-size: inherit;}
   border-bottom: 1px solid #007bff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*.resume > section.skills > ul > li > .removeSkill{*/
-  /*position: absolute;*/
-  /*right: 5px;*/
-  /*top: 0;*/
-  /*font-size: 1.5rem;*/
-  /*cursor: pointer;*/
-  /*color: #007bff;*/
-/*}*/
-/*.resume > section.skills > ul > li > .removeSkill:hover{*/
-  /*color: #0069d9;*/
-/*}*/
-
-/*!*page > main*!*/
-/*.page > main{*/
-  /*flex-grow: 1;*/
+/*body{*/
   /*overflow: auto;*/
 /*}*/
-/*.page > main > .resume{*/
-  /*max-width: 800px;*/
-  /*margin: 0 auto;*/
-/*}*/
-/*.resume > section{*/
-  /*margin: 50px 0;*/
-/*}*/
-/*.resume > section h1,*/
-/*.resume > section h2{*/
-  /*text-align: center;*/
-  /*margin-bottom: 20px;*/
-/*}*/
-
-/*!*section.profile*!*/
-/*.resume > section.profile > p{*/
-  /*text-align: center;*/
-/*}*/
-/*.resume > section.profile > p.job{*/
-  /*font-size: 20px;*/
-  /*margin-bottom: 10px;*/
-/*}*/
-
-/*!*section.skills*!*/
-/*.resume > section.skills > ul{*/
-  /*display: flex;*/
-  /*flex-wrap: wrap;*/
-  /*justify-content: space-between;*/
-/*}*/
-/*.resume > section.skills > ul > li{*/
-  /*border: 1px solid #ccc;*/
-  /*width: 48%;*/
-  /*padding: 10px;*/
-  /*margin-top: 10px;*/
-/*}*/
-
-/*!*section.projects*!*/
-/*.resume > section.projects > ol > li {*/
-  /*margin: 30px 0;*/
-  /*border: 1px solid #ddd;*/
-  /*padding: 10px;*/
-/*}*/
-/*.resume > section.projects > ol > li > header{*/
-  /*line-height: 30px;*/
-  /*margin-bottom: 10px;*/
-/*}*/
-/*.resume > section.projects > ol > li > header .name,*/
-/*.resume > section.projects > ol > li > header .link{*/
-  /*float: left;*/
-  /*margin-right: 1em;*/
-  /*vertical-align: middle;*/
-/*}*/
-
-/*.resume > section.projects > ol > li > header .keywords{*/
-  /*float: right;*/
-/*}*/
-
-body{
-  overflow: auto;
-}

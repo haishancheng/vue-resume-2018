@@ -1,7 +1,9 @@
 /*.app main .editResume*/
 .app > main > .editResume{
-  max-width: 1000px;
+  max-width: 1040px;
+  min-width: 400px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .editResume .editRow{
@@ -19,6 +21,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 300;
+  white-space: nowrap;
 }
 .editResume .editRow > input,
 .editResume .editBigRow > textarea{
@@ -196,12 +199,19 @@
   word-break: break-word;
 }
 
-
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1040px){
+  .editResume > section.editContacts > ul > li{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 750px){
   .editResume > section.editContacts > ul > li{
     width: 100%;
   }
-  .editResume > section.editSkills > ul > li{
+  .editResume > section.editSkills > ul > li,
+  .editResume > section.editProjects > ol > li{
     width: 100%;
   }
+}
+@media screen and (max-width: 540px){
 }

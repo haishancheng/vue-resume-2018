@@ -19,7 +19,7 @@ window.SignUp = {
         </div>
         <div class="actions">
           <button type="submit">注册</button>
-          <p>Please remember your account and password, this site does not support the recovery.</p>
+          <p>本网站暂不支持找回密码的功能，请牢记您的账号和密码哦</p>
         </div>
       </form>
       <div class="toSignUp">

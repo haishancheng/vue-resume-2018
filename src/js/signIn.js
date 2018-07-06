@@ -55,7 +55,7 @@ window.SignIn = {
     },
     check(){
       if(this.signInData.email === ''){
-        this.showPrompt('!', '请填写邮箱！', )
+        this.showPrompt('!', '请填写邮箱！')
         return false
       } else if(this.signInData.password === ''){
         this.showPrompt('!', '请填写密码！')
