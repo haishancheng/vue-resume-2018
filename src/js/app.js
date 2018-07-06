@@ -1,13 +1,13 @@
 window.App = {
   template: `
       <div class="app">
-        <app-header v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume" @on-print="print" @on-share=""></app-header>
+        <app-header v-show="!isSharing" v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume" @on-print="print" @on-share="share"></app-header>
         <main>
           <resume v-show="!isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>
           <edit-resume v-show="isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)" @add-skill="addSkill()" @remove-project="removeProject($event)" @add-project="addProject()"></edit-resume>
         </main>
  
-        <footer>
+        <footer v-show="!isSharing">
           <p class="author"><span>简历编辑器</span> by 海山城</p>
           <p><a class="link" href="https://haishancheng.github.io/vue-resume-2018/src/index.html#/">github.com/haishancheng.</a> All Rights Reserved.</p>
           <p>© CopyRight 2018-xxxx</p>
@@ -17,16 +17,17 @@ window.App = {
         </transition>
       </div>
   `,
-  data(){
+  data() {
     return {
-      isEdit:false,
+      isEdit: false,
       isLoginIn: false,
+      isSharing: false,
       shareLink: '',
       resume: {
         name: '你好',
         brief: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
         contacts: [
-          {iconClass:'icon-phone', info: '16666666666', editName: 'Phone'},
+          {iconClass: 'icon-phone', info: '16666666666', editName: 'Phone'},
           {iconClass: 'icon-email', info: 'example@example.com', editName: 'Email'},
           {iconClass: 'icon-qq', info: '123456789', editName: 'QQ'},
           {iconClass: 'icon-wechat', info: 'wechatID', editName: 'WeChat'},
@@ -48,7 +49,7 @@ window.App = {
         name: '你好',
         brief: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
         contacts: [
-          {iconClass:'icon-phone', info: '16666666666'},
+          {iconClass: 'icon-phone', info: '16666666666'},
           {iconClass: 'icon-email', info: 'example@example.com'},
           {iconClass: 'icon-qq', info: '123456789'},
           {iconClass: 'icon-wechat', info: 'wechatID'},
@@ -70,61 +71,70 @@ window.App = {
       prompt: {
         icon: '',
         info: '',
+        title: ''
       },
     }
   },
   created: function () {
-    if(AV.User.current()){
-      this.isLoginIn = true
-      this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
-      this.getResume(AV.User.current().id)
-    }
-
-    let params = this.$router.history.current.params
-    if(params.message==="signUpSuccess"){
-      this.showPrompt('√', '注册成功，开始编辑你的简历吧！')
-      AV.User.logIn(params.email, params.password).then((loggedInUser) => {
+    let search = location.href
+    let regex = /user_id=([^&#]+)/
+    let matches = search.match(regex)
+    if (matches) {
+      this.isSharing = true
+      this.getResume(matches[1]).then(() => {
+      }, () => {
+      })
+    } else {
+      if (AV.User.current()) {
         this.isLoginIn = true
         this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
-        this.getResume(loggedInUser.id)
-      })
+        this.getResume(AV.User.current().id)
+      }
+      let params = this.$router.history.current.params
+      if (params.message === "signUpSuccess") {
+        this.showPrompt('√', '注册成功，开始编辑你的简历吧！')
+        AV.User.logIn(params.email, params.password).then((loggedInUser) => {
+          this.isLoginIn = true
+          this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
+          this.getResume(loggedInUser.id)
+        })
+      }
+      if (params.message === "signInSuccess") {
+        AV.User.logIn(params.email, params.password).then((loggedInUser) => {
+          this.isLoginIn = true
+          this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
+          this.getResume(loggedInUser.id)
+        })
+      }
     }
-    if(params.message==="signInSuccess"){
-      AV.User.logIn(params.email, params.password).then((loggedInUser) => {
-        this.isLoginIn = true
-        this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
-        this.getResume(loggedInUser.id)
-      })
-    }
-    console.log('shareLink', this.shareLink)
   },
-  methods:{
-    addSkill(){
+  methods: {
+    addSkill() {
       this.resume.skills.push({name: '请填写技能名称', description: '请填写技能描述'})
     },
-    removeSkill(index){
+    removeSkill(index) {
       this.resume.skills.splice(index, 1)
     },
-    addProject(){
+    addProject() {
       this.resume.projects.push({name: '请填写项目名称', link: 'http://...', keywords: '请填写关键词', description: '请填写项目描述'})
     },
-    removeProject(index){
+    removeProject(index) {
       this.resume.projects.splice(index, 1)
     },
     getResume(id) {
       var user = new AV.Query('User')
       return user.get(id).then((newUser) => {
         Object.assign(this.resume, newUser.attributes.resume)
-      }).catch(function(error) {
+      }).catch(function (error) {
         alert('查询的用户的id有错误，未查询到结果');
       });
     },
     onSignOut() {
-      if(this.isEdit){
-        this.showPrompt('!', '保存之后再注销才可以哦~')
-      } else{
-        AV.User.logOut().then(()=>{
-          this.isLoginIn =  false
+      if (this.isEdit) {
+        this.showPrompt('!', '保存之后才可以注销哦~')
+      } else {
+        AV.User.logOut().then(() => {
+          this.isLoginIn = false
           this.showPrompt('√', '注销成功！')
           Object.assign(this.resume, this.resumeExample)
         })
@@ -141,107 +151,27 @@ window.App = {
         console.log('数据保存失败')
       })
     },
-    print(){
-      if(this.isEdit){
-        this.showPrompt('!', '保存之后才能打印~！')
-      }else{
+    print() {
+      if (this.isEdit) {
+        this.showPrompt('!', '保存之后才能打印哦~')
+      } else {
         window.print()
       }
     },
-    showPrompt(icon, info){
+    share() {
+      if (this.isEdit) {
+        this.showPrompt('!', '保存之后才能分享哦~')
+      } else {
+        this.showPrompt('√', this.shareLink, '请复制下列连接进行分享')
+      }
+    },
+    showPrompt(icon, info, title) {
       this.prompt.icon = icon
       this.prompt.info = info
+      this.prompt.title = title
       this.promptVisible = true
     }
   }
-  // data(){
-  //   return {
-  //     signInVisible: false,
-  //     signUpVisible: false,
-  //     shareVisible: false,
-  //     skinPickerVisible: false,
-  //     resume: {
-  //       name: '开始模板',
-  //       gender: '开始模板',
-  //       birthday: '开始模板',
-  //       jobTitle: '开始模板',
-  //       phone: '开始模板',
-  //       email: '开始模板',
-  //       skills: [
-  //         {name: '请填写技能名称', description: '请填写技能描述'},
-  //         {name: '请填写技能名称', description: '请填写技能描述'},
-  //       ],
-  //       projects: [
-  //         {name: '请填写项目名称', link: 'http://...', keywords: '请填写关键词', description: '请填写项目描述'},
-  //         {name: '请填写项目名称', link: 'http://...', keywords: '请填写关键词', description: '请填写项目描述'},
-  //       ]
-  //     },
-  //     shareLink: '不知道',
-  //     isShareMode: false,
-  //   }
-  // },
-  // methods: {
-  //   onEdit(key, value) {
-  //     /* 解析key => skills[0].name*/
-  //
-  //     /* 1.skills[0].name => skills.0.name */
-  //     let reg = /\[(\d+)\]/g
-  //     //match是reg匹配出的结果
-  //     key = key.replace(reg, function(match, number){
-  //       return '.' + number
-  //     })
-  //
-  //     /* 2.skills.0.name  => ["skills", "0", "name"] */
-  //     let keys = key.split('.')
-  //
-  //     /* 3.找到resume["skills"]["0"]["name"] */
-  //     let result = this.resume
-  //     for(let i = 0; i < keys.length; i++){
-  //       if(i === keys.length-1){
-  //         result[keys[i]] = value
-  //       }else{
-  //         result = result[keys[i]]
-  //       }
-  //     }
-  //   },
-  //   onSignOut() {
-  //     AV.User.logOut()
-  //     alert('注销成功')
-  //     location.reload()
-  //   },
-  //   onSave() {
-  //     var currentUser = AV.User.current()
-  //     if (!currentUser) {
-  //       // this.signInVisible = true
-  //       this.$router.push('/signIn')
-  //     }
-  //     else {
-  //       this.saveResume()
-  //     }
-  //   },
-  //   saveResume() {
-  //     let {id} = AV.User.current()
-  //     var user = AV.Object.createWithoutData('User', id)
-  //     user.set('resume', this.resume)
-  //     user.save().then(() => {
-  //       alert('保存成功')
-  //     }, () => {
-  //       alert('保存失败')
-  //     })
-  //   },
-  //   getResume(id) {
-  //     var user = new AV.Query('User')
-  //     return user.get(id).then((newUser) => {
-  //       Object.assign(this.resume, newUser.attributes.resume)
-  //     }).catch(function(error) {
-  //       alert('查询的用户的id有错误，未查询到结果');
-  //     });
-  //
-  //   },
-  //   print(){
-  //     window.print()
-  //   }
-  // }
 }
 
 // 组件就是一个对象，上面就已经是组件了，这里是注册组件，注册完了才可以在html中使用，做路由的话其实暂时用不到

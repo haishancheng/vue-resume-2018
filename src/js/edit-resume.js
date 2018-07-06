@@ -1,4 +1,3 @@
-
 Vue.component('edit-resume', {
   props: ['resume'],
   template: `

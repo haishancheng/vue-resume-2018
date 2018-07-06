@@ -4,7 +4,8 @@ Vue.component('prompt', {
     <div class="promptCover" @click="$emit('close-prompt')">
       <div class="prompt" @click.stop>
         <span class="icon" v-bind:class="classObject">{{prompt.icon}}</span>
-        <p>{{prompt.info}}</p>
+        <p class="title">{{prompt.title}}</p>
+        <p class="info">{{prompt.info}}</p>
         <button @click="$emit('close-prompt')">OK</button>
       </div>
     </div>
