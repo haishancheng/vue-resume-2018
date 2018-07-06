@@ -4,7 +4,7 @@ Vue.component('resume', {
     <div class="resume">
       <section class="profile">
         <h1>{{resume.name}}</h1>
-        <p class="job">{{resume.gender}}</p>
+        <p class="job">{{resume.brief}}</p>
       </section>
       <section class="contacts">
         <div class="sectionTitle">
@@ -47,25 +47,6 @@ Vue.component('resume', {
           </li>
         </ol>
       </section>
-      <!--<section class="projects">-->
-        <!--<h2>项目经历</h2>-->
-        <!--<ol>-->
-          <!--<li v-for="project,index in resume.projects">-->
-            <!--<header class="clearfix">-->
-              <!--<h3 class="name">-->
-                <!--<editable-span v-bind:value="project.name" @edit="onEdit('projects['+index+'].name', $event)"></editable-span>-->
-              <!--</h3>-->
-              <!--<editable-span class="link" :value="project.link" @edit="onEdit('projects['+index+'].link', $event)"></editable-span>-->
-              <!--<editable-span class="keywords" :value="project.keywords" @edit="onEdit('projects['+index+'].keywords', $event)">css3、jQuery、响应式</editable-span>-->
-            <!--</header>-->
-            <!--<p class="description">-->
-              <!--<editable-span v-bind:value="project.description" v-on:edit="onEdit('projects['+index+'].description', $event)"></editable-span>-->
-            <!--</p>-->
-            <!--<span v-if="index>=1" @click="removeProject(index)">删除项目</span>-->
-          <!--</li>-->
-        <!--</ol>-->
-        <!--<button @click="addProject">添加项目</button>-->
-      <!--</section>-->
     </div>
   `,
 })

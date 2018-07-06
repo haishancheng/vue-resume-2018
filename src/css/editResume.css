@@ -1,0 +1,207 @@
+/*.app main .editResume*/
+.app > main > .editResume{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.editResume .editRow{
+  display: flex;
+}
+.editResume .editRow > span,
+.editResume .editBigRow > span{
+  background: #e9ecef;
+  padding: 0 12px;
+  border: 1px solid #ced4da;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+}
+.editResume .editRow > input,
+.editResume .editBigRow > textarea{
+  flex-grow: 1;
+  font-size: 16px;
+  color: #495057;
+  border:1px solid #ced4da;
+  border-radius: 0 5px 5px 0;
+  border-left-style: none;
+  padding: 8px 10px;
+  font-weight: 400;
+}
+
+.editResume .editBigRow{
+  display: flex;
+}
+.editResume .editBigRow > span {
+}
+.editResume .editBigRow > textarea {
+  resize: none;
+  padding: 10px;
+}
+
+/* section common */
+.editResume > section{
+  margin-top: 45px;
+}
+.editResume > section > .sectionTitle > h2{
+  text-align: center;
+  color: rgb(52, 58, 64);
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 2rem;
+}
+.editResume > section > .sectionTitle > p{
+  text-align: center;
+  color: #007bff;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/*section.editProfile*/
+.editResume > section.editProfile{
+  margin-top: 90px;
+}
+.editResume > section.editProfile > .editRow{
+  margin-top: 20px;
+}
+
+/*section.contacts*/
+.editResume > section.editContacts > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid #007bff;
+  border-radius:5px;
+  padding: 20px 10px;
+}
+.editResume > section.editContacts > ul > li{
+  width: 33%;
+  padding: 10px;
+}
+
+
+/*section.editSkills*/
+.editResume > section.editSkills > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.editResume > section.editSkills > ul > li{
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  width: 48%;
+  background: #e3f2fd;
+  font-size: 1rem;
+  color: #343a40;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.editResume > section.editSkills > ul > li > .name{
+  margin: 20px;
+  /*word-break: break-all;*/
+}
+.editResume > section.editSkills > ul > li > .description{
+  padding: 20px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  flex-grow: 1;
+}
+
+.editResume > section.editSkills > ul > li > .removeSkill,
+.editResume > section.editProjects > ol > li > .removeProject{
+  position: absolute;
+  right: 5px;
+  top: -3px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #72b6fe;
+}
+.editResume > section.editSkills > ul > li > .removeSkill:hover,
+.editResume > section.editProjects > ol > li > .removeProject:hover{
+  color: #0069d9;
+}
+.editResume > section.editSkills > .addSkill,
+.editResume > section.editProjects > .addProject
+{
+  display: block;
+  width: 100%;
+  color: #007bff;
+  background: white;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 30px;
+}
+.editResume > section.editSkills > .addSkill:hover,
+.editResume > section.editProjects > .addProject:hover{
+  color: white;
+  background: #007bff;
+}
+
+/*section.editProjects*/
+.editResume > section.editProjects > ol{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.editResume > section.editProjects > ol > li{
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  width: 48%;
+  background: #e3f2fd;
+  font-size: 1rem;
+  color: #343a40;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.editResume > section.editProjects > ol > li > .description{
+  padding: 20px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  flex-grow: 1;
+}
+.editResume > section.editProjects > ol > li > header{
+  margin: 20px;
+  color: #343a40;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.editResume > section.editProjects > ol > li > header> .name{
+  color: #007bff;
+  font-weight: 700;
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+.editResume > section.editProjects > ol > li > header> .link{
+  font-weight: 300;
+  font-size: 14px;
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+.editResume > section.editProjects > ol > li > header> .keywords{
+  font-size: 13px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+
+@media screen and (max-width: 950px) {
+  .editResume > section.editContacts > ul > li{
+    width: 100%;
+  }
+  .editResume > section.editSkills > ul > li{
+    width: 100%;
+  }
+}

@@ -1,19 +1,15 @@
 window.App = {
   template: `
-    <!--<div>-->
-      <!--<app-aside v-show="!isShareMode" @on-save="onSave" @on-sign-out="onSignOut" @on-share="shareVisible=true" @on-print="print" @on-change-skin="skinPickerVisible=true"></app-aside>-->
-      <!--<main>-->
-        <!--<resume v-bind:resume="resume"></resume>-->
-      <!--</main>-->
-    <!--</div>-->
       <div class="app">
-        <app-header></app-header>
+        <app-header v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume"></app-header>
         <main>
-          <resume v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>
+          <resume v-show="!isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>
+          <edit-resume v-show="isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)" @add-skill="addSkill()" @remove-project="removeProject($event)" @add-project="addProject()"></edit-resume>
         </main>
+ 
         <footer>
           <p class="author"><span>简历编辑器</span> by 海山城</p>
-          <p><a class="link" href="#">github.com/haishancheng.</a> All Rights Reserved.</p>
+          <p><a class="link" href="https://haishancheng.github.io/vue-resume-2018/src/index.html#/">github.com/haishancheng.</a> All Rights Reserved.</p>
           <p>© CopyRight 2018-xxxx</p>
         </footer>
         <transition name="bounce">
@@ -23,11 +19,33 @@ window.App = {
   `,
   data(){
     return {
+      isEdit:false,
+      isLoginIn: false,
       resume: {
         name: '你好',
-        gender: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
-        birthday: '1991-1-1',
-        jobTitle: '前端开发工程师',
+        brief: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
+        contacts: [
+          {iconClass:'icon-phone', info: '16666666666', editName: 'Phone'},
+          {iconClass: 'icon-email', info: 'example@example.com', editName: 'Email'},
+          {iconClass: 'icon-qq', info: '123456789', editName: 'QQ'},
+          {iconClass: 'icon-wechat', info: 'wechatID', editName: 'WeChat'},
+          {iconClass: 'icon-blog', info: ' http://example.blog.com/', editName: 'Blog'},
+          {iconClass: 'icon-github', info: 'https://github.com/example', editName: 'GitHub'},
+        ],
+        skills: [
+          {name: 'HTML', description: '熟练掌握HTML...'},
+          {name: 'CSS', description: '熟练掌握CSS...'},
+          {name: 'JavaScript', description: '熟练掌握JavaScript...'},
+        ],
+        projects: [
+          {name: 'HTML', link: 'http://example.com', keywords: 'HTML5', description: 'HTML作品'},
+          {name: 'CSS', link: 'http://example.com', keywords: 'CSS3', description: 'CSS作品'},
+          {name: 'JavaScript', link: 'http://example.com', keywords: 'ES6', description: 'JavaScript作品'},
+        ]
+      },
+      resumeExample: {
+        name: '你好',
+        brief: '欢迎使用简历编辑器，如果你想要制作你的简历，请点击右上角的【登录】',
         contacts: [
           {iconClass:'icon-phone', info: '16666666666'},
           {iconClass: 'icon-email', info: 'example@example.com'},
@@ -55,10 +73,26 @@ window.App = {
     }
   },
   created: function () {
-    if(this.$router.history.current.params.message==="signUpSuccess"){
+    if(AV.User.current()){
+      this.isLoginIn = true
+      this.getResume(AV.User.current().id)
+    }
+
+    let params = this.$router.history.current.params
+    if(params.message==="signUpSuccess"){
       this.prompt.icon = '√'
       this.prompt.info = '注册成功，开始编辑你的简历吧！'
       this.promptVisible = true
+      AV.User.logIn(params.email, params.password).then((loggedInUser) => {
+        this.isLoginIn = true
+        this.getResume(loggedInUser.id)
+      })
+    }
+    if(params.message==="signInSuccess"){
+      AV.User.logIn(params.email, params.password).then((loggedInUser) => {
+        this.isLoginIn = true
+        this.getResume(loggedInUser.id)
+      })
     }
   },
   methods:{
@@ -73,6 +107,35 @@ window.App = {
     },
     removeProject(index){
       this.resume.projects.splice(index, 1)
+    },
+    getResume(id) {
+      var user = new AV.Query('User')
+      return user.get(id).then((newUser) => {
+        Object.assign(this.resume, newUser.attributes.resume)
+      }).catch(function(error) {
+        alert('查询的用户的id有错误，未查询到结果');
+      });
+    },
+    onSignOut() {
+      AV.User.logOut().then(()=>{
+        console.log(AV.User.current())
+        this.isLoginIn =  false
+        this.prompt.icon = '√'
+        this.prompt.info = '注销成功！'
+        this.promptVisible = true
+        Object.assign(this.resume, this.resumeExample)
+      })
+    },
+    saveResume() {
+      let {id} = AV.User.current()
+      var user = AV.Object.createWithoutData('User', id)
+      user.set('resume', this.resume)
+      user.save().then(() => {
+        // this.showPrompt('√', '保存成功！')
+        this.isEdit = false
+      }, () => {
+        console.log('数据保存失败')
+      })
     },
   }
   // data(){

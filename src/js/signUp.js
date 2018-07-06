@@ -1,4 +1,4 @@
-window.signUp = {
+window.SignUp = {
   template: `
     <div class="signUp">
       <form @submit.prevent="onSignUp" v-cloak>
@@ -53,9 +53,9 @@ window.signUp = {
       user.setPassword(this.signUpData.password)
       user.setEmail(this.signUpData.email)
       user.signUp().then((loggedInUser) => {
-        // this.showPrompt('√', '注册成功，开始编辑你的简历吧！', )
-        // this.$router.push('/')
-        this.$router.push({name:'/', params:{message:'signUpSuccess'}})
+        this.$router.push({name:'/', params:{message: 'signUpSuccess', email: this.signUpData.email, password: this.signUpData.password}})
+
+        // this.$router.push({name:'/', params:{message:'signUpSuccess',userID:loggedInUser.id}})
       }, (error) => {
         if (error.code === 125) {
           this.showPrompt('!', '请输入正确的邮箱地址！')
