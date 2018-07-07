@@ -10,9 +10,6 @@ button{font-size: inherit; outline: none}
   display: none;
 }
 
-@media (min-width: 500px) {
-
-}
 /*.app header*/
 .app > header{
   position: fixed;
@@ -27,11 +24,9 @@ button{font-size: inherit; outline: none}
 .app > header h1{
   font-size: 1.25rem;
   line-height: 36px;
-  float: left;
 }
-.app > header a,
+.app > header .loginIn,
 .app > header .loginOut{
-  float: right;
   border: 1px solid #007bff;
   padding: 5px 15px;
   border-radius: 5px;
@@ -39,7 +34,7 @@ button{font-size: inherit; outline: none}
   background: #e3f2fd;
   color: #007bff;
 }
-.app > header a:hover
+.app > header .loginIn:hover
 {
   color: white;
   background: #007bff;
@@ -53,18 +48,65 @@ button{font-size: inherit; outline: none}
   background: #dc3545;
 }
 .app > header .navButton {
-  float: left;
+  display: block;
   background: #e3f2fd;
   border-style: none;
   color: #007bff;
   margin-left: 30px;
   font-size: 16px;
   cursor: pointer;
-  padding-top: 8px;
   outline: none;
+  border-bottom: 1px solid transparent;
 }
 .app > header .navButton:hover {
   border-bottom: 1px solid #007bff;
+}
+
+@media screen and (min-width: 550px){
+  .app > header h1{
+    float: left;
+  }
+  .app > header .loginIn,
+  .app > header .loginOut{
+    float: right;
+  }
+  .app > header .navButton {
+    float: left;
+    padding-top: 8px;
+  }
+  .app > header > i{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 550px){
+  /*.app header*/
+  .app > header.deActive {
+    height: 56px;
+    overflow: hidden;
+  }
+
+  .app > header .loginIn,
+  .app > header .loginOut{
+    display: inline-block;
+    margin: 10px 0;
+  }
+  .app > header .navButton {
+
+    margin-left: 10px;
+    margin-top: 12px;
+  }
+  .app > header > i{
+    display: block;
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 1.5em;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
 }
 
 /*.app main*/

@@ -1,12 +1,21 @@
-Vue.component('skinPicker', {
+Vue.component('skin-picker', {
   template: `
-    <div class="skinPicker" v-cloak>
-      <button @click="setTheme('default')">default</button>
-      <button @click="setTheme('dark')">dark</button>
-      <button @click="$emit('close-skin-picker')">close</button>
+    <div class="skinPickerCover" @click="$emit('close-skin-picker')" v-cloak>
+      <div class="skinPicker" @click.stop>
+        <h2>请选择一种主题</h2>
+        <div class="theme">
+          <button class="default" @click="setTheme('default')">default</button>
+          <button class="orange" @click="setTheme('orange')">orange</button>
+        </div>
+        <p>更多主题,敬请期待!</p>
+        <button class="close" @click="$emit('close-skin-picker')">close</button>
+      </div>
     </div>
   `,
-  setTheme(name){
-    document.body.className = name
+  methods: {
+    setTheme(name){
+      this.$emit('close-skin-picker')
+      this.$emit('set-theme', name)
+    }
   }
 })

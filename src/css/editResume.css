@@ -6,7 +6,8 @@
   padding: 0 20px;
 }
 
-.editResume .editRow{
+.editResume .editRow,
+.editResume .editBigRow{
   display: flex;
 }
 .editResume .editRow > span,
@@ -33,12 +34,6 @@
   border-left-style: none;
   padding: 8px 10px;
   font-weight: 400;
-}
-
-.editResume .editBigRow{
-  display: flex;
-}
-.editResume .editBigRow > span {
 }
 .editResume .editBigRow > textarea {
   resize: none;
@@ -107,7 +102,6 @@
 }
 .editResume > section.editSkills > ul > li > .name{
   margin: 20px;
-  /*word-break: break-all;*/
 }
 .editResume > section.editSkills > ul > li > .description{
   padding: 20px;
@@ -182,7 +176,6 @@
   justify-content: space-between;
 }
 .editResume > section.editProjects > ol > li > header> .name{
-  color: #007bff;
   font-weight: 700;
   word-break: break-all;
   margin-bottom: 10px;

@@ -1,7 +1,7 @@
 Vue.component('prompt', {
   props: ['prompt'],
   template: `
-    <div class="promptCover" @click="$emit('close-prompt')">
+    <div class="promptCover" @click="$emit('close-prompt')" v-cloak>
       <div class="prompt" @click.stop>
         <span class="icon" v-bind:class="classObject">{{prompt.icon}}</span>
         <p class="title">{{prompt.title}}</p>

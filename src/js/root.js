@@ -8,5 +8,10 @@ const router = new VueRouter({
 })
 
 const root = new Vue({
-  router: router
+  router: router,
+  data(){
+    return {
+      theme: ''
+    }
+  }
 }).$mount('#root')

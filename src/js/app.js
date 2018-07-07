@@ -1,12 +1,11 @@
 window.App = {
   template: `
       <div class="app">
-        <app-header v-show="!isSharing" v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume" @on-print="print" @on-share="share"></app-header>
+        <app-header v-show="!isSharing" v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume" @on-print="print" @on-share="share" @on-change-skin="changeSkinVisible=true"></app-header>
         <main>
           <resume v-show="!isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>
           <edit-resume v-show="isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)" @add-skill="addSkill()" @remove-project="removeProject($event)" @add-project="addProject()"></edit-resume>
         </main>
- 
         <footer v-show="!isSharing">
           <p class="author"><span>简历编辑器</span> by 海山城</p>
           <p><a class="link" href="https://haishancheng.github.io/vue-resume-2018/src/index.html#/">github.com/haishancheng.</a> All Rights Reserved.</p>
@@ -14,6 +13,9 @@ window.App = {
         </footer>
         <transition name="bounce">
           <prompt v-show="promptVisible" v-bind:prompt="prompt" @close-prompt="promptVisible = false"></prompt>
+        </transition>
+        <transition name="bounce">
+          <skin-picker v-show="changeSkinVisible" @close-skin-picker="changeSkinVisible=false" @set-theme="setTheme($event)"></skin-picker>
         </transition>
       </div>
   `,
@@ -73,6 +75,7 @@ window.App = {
         info: '',
         title: ''
       },
+      changeSkinVisible: false,
     }
   },
   created: function () {
@@ -81,16 +84,16 @@ window.App = {
     let matches = search.match(regex)
     if (matches) {
       this.isSharing = true
-      this.getResume(matches[1]).then(() => {
-      }, () => {
-      })
+      this.getResume(matches[1])
+      this.getTheme(matches[1])
     } else {
       if (AV.User.current()) {
         this.isLoginIn = true
         this.shareLink = location.origin + location.pathname + '?user_id=' + AV.User.current().id
         this.getResume(AV.User.current().id)
+        this.getTheme(AV.User.current().id)
       }
-      let params = this.$router.history.current.params
+      let params = this.$route.params
       if (params.message === "signUpSuccess") {
         this.showPrompt('√', '注册成功，开始编辑你的简历吧！')
         AV.User.logIn(params.email, params.password).then((loggedInUser) => {
@@ -125,9 +128,13 @@ window.App = {
       var user = new AV.Query('User')
       return user.get(id).then((newUser) => {
         Object.assign(this.resume, newUser.attributes.resume)
-      }).catch(function (error) {
-        alert('查询的用户的id有错误，未查询到结果');
-      });
+      }).catch((error)=> {
+        if(error.code ===211){
+          this.showPrompt('✘', '分享链接不正确！')
+          // this.isSharing = false
+          // this.$router.replace({path: this.$route.path, query: {msg: 'error-sharing-link'}})
+        }
+      })
     },
     onSignOut() {
       if (this.isEdit) {
@@ -137,6 +144,7 @@ window.App = {
           this.isLoginIn = false
           this.showPrompt('√', '注销成功！')
           Object.assign(this.resume, this.resumeExample)
+          this.$emit('set-theme', 'default')
         })
       }
     },
@@ -164,6 +172,22 @@ window.App = {
       } else {
         this.showPrompt('√', this.shareLink, '请复制下列连接进行分享')
       }
+    },
+    setTheme(value){
+      this.$emit('set-theme', value)
+      this.saveTheme(value)
+    },
+    saveTheme(theme){
+      let user = AV.Object.createWithoutData('User', AV.User.current().id)
+      user.set('theme', theme)
+      user.save()
+    },
+    getTheme(id){
+      let user = new AV.Query('User')
+      return user.get(id).then((newUser) => {
+        let {theme} = newUser.attributes
+        this.$emit('set-theme', theme)
+      })
     },
     showPrompt(icon, info, title) {
       this.prompt.icon = icon

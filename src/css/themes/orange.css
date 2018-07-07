@@ -1,0 +1,127 @@
+
+/*.app header*/
+.app.orange > header{
+  color: #ff7700;
+  background-color: #ffe5bc;
+}
+.app.orange > header .loginIn,
+.app.orange > header .loginOut{
+  border: 1px solid #ff7700;
+  background: #ffe5bc;
+  color: #ff7700;
+}
+.app.orange > header .loginIn:hover
+{
+  color: white;
+  background: #ff7700;
+}
+.app.orange > header .loginOut{
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+.app.orange > header .loginOut:hover{
+  color: white;
+  background: #dc3545;
+}
+.app.orange > header .navButton {
+  background: #ffe5bc;
+  color: #ff7700;
+}
+.app.orange > header .navButton:hover {
+  border-bottom: 1px solid #ff7700;
+}
+.app > header > i{
+  border: 1px solid #ff7700;
+}
+
+/*app > footer*/
+.app.orange > footer > .author > span{
+  color: #ff7700;
+}
+.app.orange > footer a.link{
+  color: #ff7700;
+}
+.app.orange > footer a.link:hover{
+  border-bottom: 1px solid #ff7700;
+}
+
+/*.app main .resume*/
+.app.orange .resume > section > .sectionTitle > p{
+  color: #ff7700;
+}
+
+/*section.profile*/
+.app.orange .resume > section.profile > p{
+  color: #ff7700;
+}
+
+/*section.contacts*/
+.app.orange .resume > section.contacts > ul{
+  color: #ff7700;
+  border: 1px solid #ff7700;
+}
+.app.orange .resume > section.contacts > ul > li > a:hover {
+  color: #ff7700;
+  border-bottom: 1px solid #ff7700;
+}
+
+/*section.skills && section.projects*/
+.app.orange .resume > section.skills > ul > li,
+.app.orange .resume > section.projects > ol > li{
+  border: 1px solid #ff7700;
+  background: #ffe5bc;
+}
+.app.orange .resume > section.skills > ul > li > .name{
+  color: #ff7700;
+}
+
+/*section.projects*/
+.app.orange .resume > section.projects > ol > li > header> .name{
+  color: #ff7700;
+}
+.app.orange .resume > section.projects > ol > li > .link{
+  color: #ff7700;
+}
+.app.orange .resume > section.projects > ol > li > .link >a:hover{
+  border-bottom: 1px solid #ff7700;
+}
+
+/*.app main .editResume*/
+/* section common */
+.app.orange .editResume > section > .sectionTitle > p{
+  color: #ff7700;
+}
+/*section.contacts*/
+.app.orange .editResume > section.editContacts > ul{
+  border: 1px solid #ff7700;
+}
+/*section.editSkills*/
+.app.orange .editResume > section.editSkills > ul > li{
+  border: 1px solid #ff7700;
+  background: #ffe5bc;
+}
+.app.orange .editResume > section.editSkills > ul > li > .removeSkill,
+.app.orange .editResume > section.editProjects > ol > li > .removeProject{
+  color: #f9aa31;
+}
+.app.orange .editResume > section.editSkills > ul > li > .removeSkill:hover,
+.app.orange .editResume > section.editProjects > ol > li > .removeProject:hover{
+  color: #ff7700;
+}
+.app.orange .editResume > section.editSkills > .addSkill,
+.app.orange .editResume > section.editProjects > .addProject
+{
+  color: #ff7700;
+  border: 1px solid #ff7700;
+}
+.app.orange .editResume > section.editSkills > .addSkill:hover,
+.app.orange .editResume > section.editProjects > .addProject:hover{
+  background: #ff7700;
+  color: white;
+}
+
+/*section.editProjects*/
+.app.orange .editResume > section.editProjects > ol > li{
+  border: 1px solid #ff7700;
+  background: #ffe5bc;
+}
