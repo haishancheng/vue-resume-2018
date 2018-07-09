@@ -30,7 +30,7 @@
 .app.orange > header .navButton:hover {
   border-bottom: 1px solid #ff7700;
 }
-.app > header > i{
+.app.orange > header > i{
   border: 1px solid #ff7700;
 }
 
