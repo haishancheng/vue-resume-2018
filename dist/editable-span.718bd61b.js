@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({14:[function(require,module,exports) {
+})({35:[function(require,module,exports) {
 Vue.component('editable-span', {
   props: ['value'],
   template: '\n      <span class="editableSpan">\n        <span v-show="!editing">{{value}}</span>\n        <input type="text" v-show="editing" v-model="value" @input="triggerEdit">\n        <button v-on:click="editing = !editing">edit</button>\n      </span>\n    ',
@@ -113,7 +113,7 @@ Vue.component('editable-span', {
     }
   }
 });
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -142,7 +142,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -283,5 +283,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,14], null)
+},{}]},{},[74,35], null)
 //# sourceMappingURL=/editable-span.718bd61b.map

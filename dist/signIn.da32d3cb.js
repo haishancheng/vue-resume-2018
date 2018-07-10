@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({16:[function(require,module,exports) {
+})({37:[function(require,module,exports) {
 window.SignIn = {
   template: '\n    <div class="signIn" v-cloak>\n      <form @submit.prevent="onSignIn">\n        <h2>\u7B80\u5386\u7F16\u8F91\u5668</h2>\n        <p>New jobs, new lives</p>\n        <router-link class="close" to="/">x</router-link>\n        <div class="row">\n          <label>\u90AE\u7BB1</label>\n          <input placeholder="example@example.com" type="text" v-model="signInData.email" autocomplete="on">\n        </div>\n        <div class="row">\n          <label>\u5BC6\u7801</label>\n          <input placeholder="Enter password" type="password" v-model="signInData.password" autocomplete="on">\n        </div>\n        <div class="actions">\n          <button type="submit">\u767B\u5F55</button>\n          <p>We\'ll never share your email with anyone else.</p>\n        </div>\n      </form>\n      <div class="toSignUp">\n        \u8FD8\u6CA1\u6709\u8D26\u6237\uFF1F\n        <router-link to="/signUp">\u6CE8\u518C</router-link>\n      </div>\n      <transition name="bounce">\n        <prompt v-show="promptVisible" v-bind:prompt="prompt" @close-prompt="promptVisible = false"></prompt>\n      </transition>\n    </div>\n  ',
   data: function data() {
@@ -150,7 +150,7 @@ window.SignIn = {
 
   // html规范，标签不能有大写，因此写成sign-in
 };Vue.component('signIn', window.signIn);
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -179,7 +179,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -320,5 +320,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,16], null)
+},{}]},{},[74,37], null)
 //# sourceMappingURL=/signIn.da32d3cb.map

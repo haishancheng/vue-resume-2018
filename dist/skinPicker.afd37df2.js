@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({17:[function(require,module,exports) {
+})({39:[function(require,module,exports) {
 Vue.component('skin-picker', {
   template: '\n    <div class="skinPickerCover" @click="$emit(\'close-skin-picker\')" v-cloak>\n      <div class="skinPicker" @click.stop>\n        <h2>\u8BF7\u9009\u62E9\u4E00\u79CD\u4E3B\u9898</h2>\n        <div class="theme">\n          <button class="default" @click="setTheme(\'default\')">default</button>\n          <button class="orange" @click="setTheme(\'orange\')">orange</button>\n        </div>\n        <p>\u66F4\u591A\u4E3B\u9898,\u656C\u8BF7\u671F\u5F85!</p>\n        <button class="close" @click="$emit(\'close-skin-picker\')">close</button>\n      </div>\n    </div>\n  ',
   methods: {
@@ -108,7 +108,7 @@ Vue.component('skin-picker', {
     }
   }
 });
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -137,7 +137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -278,5 +278,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,17], null)
+},{}]},{},[74,39], null)
 //# sourceMappingURL=/skinPicker.afd37df2.map

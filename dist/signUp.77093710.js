@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({18:[function(require,module,exports) {
+})({38:[function(require,module,exports) {
 window.SignUp = {
   template: '\n    <div class="signUp">\n      <form @submit.prevent="onSignUp" v-cloak>\n        <h2>\u7B80\u5386\u7F16\u8F91\u5668</h2>\n        <p>New jobs, new lives</p>\n        <router-link class="close" to="/">x</router-link>\n        <div class="row">\n          <label>\u90AE\u7BB1</label>\n          <input placeholder="example@example.com" type="text" v-model="signUpData.email" autocomplete="on">\n        </div>\n        <div class="row">\n          <label>\u5BC6\u7801</label>\n          <input placeholder="Enter password" type="password" v-model="signUpData.password" autocomplete="on">\n        </div>\n        <div class="row">\n          <label>\u786E\u8BA4\u5BC6\u7801</label>\n          <input placeholder="Confirm your password" type="password" v-model="signUpData.confirm" autocomplete="on">\n        </div>\n        <div class="actions">\n          <button type="submit">\u6CE8\u518C</button>\n          <p>\u672C\u7F51\u7AD9\u6682\u4E0D\u652F\u6301\u627E\u56DE\u5BC6\u7801\u7684\u529F\u80FD\uFF0C\u8BF7\u7262\u8BB0\u60A8\u7684\u8D26\u53F7\u548C\u5BC6\u7801\u54E6</p>\n        </div>\n      </form>\n      <div class="toSignUp">\n        \u5DF2\u7ECF\u6709\u8D26\u6237\u4E86\uFF1F\n        <router-link to="/signIn">\u767B\u5F55</router-link>\n      </div>\n      <transition name="bounce">\n        <prompt v-show="promptVisible" v-bind:prompt="prompt" @close-prompt="promptVisible = false"></prompt>\n      </transition>\n    </div>\n  ',
   data: function data() {
@@ -162,7 +162,7 @@ window.SignUp = {
   }
 };
 Vue.component('signUp', window.signUp);
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -191,7 +191,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -332,5 +332,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,18], null)
+},{}]},{},[74,38], null)
 //# sourceMappingURL=/signUp.77093710.map

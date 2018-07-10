@@ -98,12 +98,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({22:[function(require,module,exports) {
+})({43:[function(require,module,exports) {
 Vue.component('edit-resume', {
   props: ['resume'],
   template: '\n      <div class="editResume">\n        <section class="editProfile">\n          <div class="editRow"><span>\u59D3\u540D</span><input type="text" v-model="resume.name"></div>\n          <div class="editRow"><span>\u7B80\u4ECB</span><input type="text" v-model="resume.brief" placeholder="\u7537 | 1993-3-3 | xxx\u5B66\u6821 | xxx\u4E13\u4E1A..."></div>\n        </section>\n        <section class="editContacts">\n          <div class="sectionTitle">\n            <h2>\u8054\u7CFB</h2>\n            <p>Contact Information</p>\n          </div>\n          <ul>\n            <li v-for="contact in resume.contacts">\n              <div class="editRow">\n                <span>{{contact.editName}}</span><input type="text" v-model="contact.info">\n              </div>\n            </li>\n          </ul>\n        </section>\n        <section class="editSkills">\n          <div class="sectionTitle">\n            <h2>\u6280\u80FD</h2>\n            <p>Professional Skills</p>\n          </div>\n          <ul>\n            <li v-for="skill,index in resume.skills">             \n              <div class="name"><div class="editRow"><span>\u6280\u80FD</span><input type="text" v-model="skill.name"></div></div>\n              <div class="description"><div class="editBigRow"><span>\u63CF\u8FF0</span><textarea rows="6" v-model="skill.description"></textarea></div></div>\n              <span class="removeSkill" v-if="index >= 1" @click="$emit(\'remove-skill\', index)">\xD7</span>\n            </li>\n          </ul>\n          <button class="addSkill" @click="$emit(\'add-skill\')">\u6DFB\u52A0\u6280\u80FD</button>\n        </section>\n        <section class="editProjects">\n          <div class="sectionTitle">\n            <h2>\u4F5C\u54C1</h2>\n            <p>Portfolio Show</p>\n          </div>\n          <ol>\n            <li v-for="project,index in resume.projects">\n              <header>\n                <div class="name "><div class="editRow"><span>\u4F5C\u54C1</span><input type="text" v-model="project.name"></div></div>\n                <div class="link"><div class="editRow"><span>\u94FE\u63A5</span><input type="text" v-model="project.link"></div></div>\n                <div class="keywords"><div class="editRow"><span>\u6280\u672F\u6808</span><input type="text" v-model="project.keywords"></div></div>\n              </header>\n              <div class="description"><div class="editBigRow"><span>\u63CF\u8FF0</span><textarea rows="6" v-model="project.description"></textarea></div></div>\n              <span class="removeProject" v-if="index >= 1" @click="$emit(\'remove-project\', index)">\xD7</span>\n            </li>\n          </ol>\n          <button class="addProject" @click="$emit(\'add-project\')">\u6DFB\u52A0\u4F5C\u54C1</button>\n        </section>\n      </div>\n  '
 });
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -132,7 +132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -273,5 +273,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,22], null)
+},{}]},{},[74,43], null)
 //# sourceMappingURL=/edit-resume.2165cf1f.map

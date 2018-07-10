@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({23:[function(require,module,exports) {
+})({44:[function(require,module,exports) {
 var routes = [{ name: '/', path: '/', component: window.App }, { path: '/signIn', component: window.SignIn }, { path: '/signUp', component: window.SignUp }];
 var router = new VueRouter({
   routes: routes
@@ -112,7 +112,7 @@ var root = new Vue({
     };
   }
 }).$mount('#root');
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -141,7 +141,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -282,5 +282,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,23], null)
+},{}]},{},[74,44], null)
 //# sourceMappingURL=/root.c312e5fb.map

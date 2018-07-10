@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({21:[function(require,module,exports) {
+})({42:[function(require,module,exports) {
 window.App = {
   template: '\n      <div class="app">\n        <app-header v-show="!isSharing" v-bind:is-login-in="isLoginIn" @login-out="onSignOut" @on-edit="isEdit=true" @on-save="saveResume" @on-print="print" @on-share="share" @on-change-skin="changeSkinVisible=true"></app-header>\n        <main>\n          <resume v-show="!isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)"></resume>\n          <edit-resume v-show="isEdit" v-bind:resume="resume" @remove-skill="removeSkill($event)" @add-skill="addSkill()" @remove-project="removeProject($event)" @add-project="addProject()"></edit-resume>\n        </main>\n        <footer v-show="!isSharing">\n          <p class="author"><span>\u7B80\u5386\u7F16\u8F91\u5668</span> by \u6D77\u5C71\u57CE</p>\n          <p><a class="link" href="https://haishancheng.github.io/vue-resume-2018/src/index.html#/">github.com/haishancheng.</a> All Rights Reserved.</p>\n          <p>\xA9 CopyRight 2018-xxxx</p>\n        </footer>\n        <transition name="bounce">\n          <prompt v-show="promptVisible" v-bind:prompt="prompt" @close-prompt="promptVisible = false"></prompt>\n        </transition>\n        <transition name="bounce">\n          <skin-picker v-show="changeSkinVisible" @close-skin-picker="changeSkinVisible=false" @set-theme="setTheme($event)"></skin-picker>\n        </transition>\n      </div>\n  ',
   data: function data() {
@@ -265,7 +265,7 @@ window.App = {
 
   // 组件就是一个对象，上面就已经是组件了，这里是注册组件，注册完了才可以在html中使用，做路由的话其实暂时用不到
 };Vue.component('app', window.App);
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -294,7 +294,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -435,5 +435,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,21], null)
+},{}]},{},[74,42], null)
 //# sourceMappingURL=/app.98bb41d0.map

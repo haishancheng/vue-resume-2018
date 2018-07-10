@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({19:[function(require,module,exports) {
+})({41:[function(require,module,exports) {
 Vue.component('app-header', {
   props: ['isLoginIn'],
   template: '\n    <header class="clearfix" v-bind:class="{deActive:!isActive}">\n      <h1>\u7B80\u5386\u7F16\u8F91\u5668</h1>\n      <button v-show="isLoginIn" class="navButton" @click="$emit(\'on-edit\')">\u7F16\u8F91</button>\n      <button v-show="isLoginIn" class="navButton" @click="$emit(\'on-save\')">\u4FDD\u5B58</button>\n      <button v-show="isLoginIn" class="navButton" @click="$emit(\'on-print\')">\u6253\u5370</button>\n      <button v-show="isLoginIn" class="navButton" @click="$emit(\'on-share\')">\u5206\u4EAB</button>\n      <button v-show="isLoginIn" class="navButton" @click="$emit(\'on-change-skin\')">\u6362\u80A4</button>\n      <button v-show="isLoginIn" class="loginOut" v-show="isLoginIn" @click="$emit(\'login-out\')" v-cloak>\u767B\u51FA</button>\n      <router-link class="loginIn" v-show="!isLoginIn"  to="/signIn">\u767B\u5F55</router-link>\n      <i class="iconfont icon-list" @click="isActive=!isActive"></i>\n    </header>\n  ',
@@ -108,7 +108,7 @@ Vue.component('app-header', {
     };
   }
 });
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -137,7 +137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -278,5 +278,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,19], null)
+},{}]},{},[74,41], null)
 //# sourceMappingURL=/app-header.d300eb64.map

@@ -98,12 +98,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({20:[function(require,module,exports) {
+})({40:[function(require,module,exports) {
 Vue.component('resume', {
   props: ['resume'],
   template: '\n    <div class="resume">\n      <section class="profile">\n        <h1>{{resume.name}}</h1>\n        <p class="job">{{resume.brief}}</p>\n      </section>\n      <section class="contacts">\n        <div class="sectionTitle">\n          <h2>\u8054\u7CFB</h2>\n          <p>Contact Information</p>\n        </div>\n        <ul>\n          <li v-for="contact in resume.contacts">\n            <i class="iconfont" v-bind:class="contact.iconClass"></i><span v-if="contact.iconClass!==\'icon-github\'&&contact.iconClass!==\'icon-blog\'">{{contact.info}}</span>\n            <a v-if="contact.iconClass===\'icon-github\'||contact.iconClass===\'icon-blog\'" v-bind:href="contact.info">{{contact.info}}</a>\n          </li>\n        </ul>\n      </section>\n      <section class="skills">\n        <div class="sectionTitle">\n          <h2>\u6280\u80FD</h2>\n          <p>Professional Skills</p>\n        </div>\n        <ul>\n          <li v-for="skill,index in resume.skills">\n            <p class="name">{{skill.name}}</p>\n            <p class="description">{{skill.description}}</p>\n          </li>\n        </ul>\n      </section>\n      <section class="projects special">\n        <div class="sectionTitle">\n          <h2>\u4F5C\u54C1</h2>\n          <p>Portfolio Show</p>\n        </div>\n        <ol>\n          <li v-for="project,index in resume.projects">\n            <header>\n              <p class="name">{{project.name}}</p>\n              <p class="keywords">{{project.keywords}}</p>\n            </header>\n            <p class="link"><a v-bind:href="project.link">{{project.link}}</a></p>\n            <p class="description">{{project.description}}</p>\n          </li>\n        </ol>\n      </section>\n    </div>\n  '
 });
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -132,7 +132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -273,5 +273,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,20], null)
+},{}]},{},[74,40], null)
 //# sourceMappingURL=/resume.f996f092.map

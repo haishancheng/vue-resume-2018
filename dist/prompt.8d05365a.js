@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({15:[function(require,module,exports) {
+})({36:[function(require,module,exports) {
 Vue.component('prompt', {
   props: ['prompt'],
   template: '\n    <div class="promptCover" @click="$emit(\'close-prompt\')" v-cloak>\n      <div class="prompt" @click.stop>\n        <span class="icon" v-bind:class="classObject">{{prompt.icon}}</span>\n        <p class="title">{{prompt.title}}</p>\n        <p class="info">{{prompt.info}}</p>\n        <button @click="$emit(\'close-prompt\')">OK</button>\n      </div>\n    </div>\n  ',
@@ -112,7 +112,7 @@ Vue.component('prompt', {
     }
   }
 });
-},{}],30:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -141,7 +141,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51606' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -282,5 +282,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,15], null)
+},{}]},{},[74,36], null)
 //# sourceMappingURL=/prompt.8d05365a.map
