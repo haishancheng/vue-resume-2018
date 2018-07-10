@@ -1,0 +1,147 @@
+/*.app main .resume*/
+.app > main > .resume{
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.resume > section{
+  margin-top: 50px;
+}
+.resume > section.special{
+  margin-top: 20px;
+}
+.resume > section > .sectionTitle > h2{
+  text-align: center;
+  color: rgb(52, 58, 64);
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 2rem;
+}
+.resume > section > .sectionTitle > p{
+  text-align: center;
+  color: #007bff;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/*section.profile*/
+.resume > section.profile > h1{
+  text-align: center;
+  margin-top: 80px;
+  font-size: 2.3rem;
+  color: #343a40;
+  font-weight:500;
+  word-break: break-all;
+}
+.resume > section.profile > p{
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #007bff;
+  word-break: break-word;
+}
+/*section.contacts*/
+.resume > section.contacts > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: #007bff;
+  font-size: 14px;
+  border: 1px solid #007bff;
+  border-radius:5px;
+  padding: 20px 10px;
+}
+.resume > section.contacts > ul > li{
+  width: 33%;
+  padding: 10px;
+  word-break: break-all;
+}
+.resume > section.contacts > ul > li > span {
+  margin-left: 10px;
+  color: #343a40;
+}
+.resume > section.contacts > ul > li > a {
+  margin-left: 8px;
+  color: #343a40;
+}
+.resume > section.contacts > ul > li > a:hover {
+  color: #007bff;
+  border-bottom: 1px solid #007bff;
+}
+
+/*section.skills && section.projects*/
+.resume > section.skills > ul,
+.resume > section.projects > ol{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.resume > section.skills > ul > li,
+.resume > section.projects > ol > li{
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  width: 48%;
+  background: #e3f2fd;
+  font-size: 1rem;
+  color: #343a40;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.resume > section.skills > ul > li > .name{
+  margin: 15px 10px;
+  color: #007bff;
+  font-weight: 700;
+  word-break: break-all;
+}
+.resume > section.skills > ul > li > .description,
+.resume > section.projects > ol > li > .description{
+  padding: 15px 10px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  flex-grow: 1;
+}
+
+/*section.projects*/
+.resume > section.projects > ol > li > header{
+  margin: 15px 10px 0;
+  color: #343a40;
+  display: flex;
+  justify-content: space-between;
+}
+.resume > section.projects > ol > li > header> .name{
+  color: #007bff;
+  font-weight: 700;
+  word-break: break-word;
+  margin-right: 10px;
+}
+.resume > section.projects > ol > li > header> .keywords{
+  font-size: 13px;
+  font-weight: 600;
+  word-break: break-word;
+}
+.resume > section.projects > ol > li > .link{
+  font-weight: 300;
+  font-size: 14px;
+  word-break: break-all;
+  margin: 10px;
+  color: #007bff;
+}
+.resume > section.projects > ol > li > .link >a:hover{
+  border-bottom: 1px solid #007bff;
+}
+
+@media screen and (max-width: 768px){
+  .resume > section.contacts > ul > li{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .resume > section.skills > ul > li,
+  .resume > section.projects > ol > li{
+    width: 100%;
+  }
+}

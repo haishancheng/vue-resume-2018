@@ -1,3 +1,5 @@
+import '../css/signIn.css'
+
 window.SignIn = {
   template: `
     <div class="signIn" v-cloak>

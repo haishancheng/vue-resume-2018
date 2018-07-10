@@ -1,3 +1,5 @@
+import '../css/signUp.css'
+
 window.SignUp = {
   template: `
     <div class="signUp">

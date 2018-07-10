@@ -1,0 +1,95 @@
+.signIn{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background: #ddd url("bg.3b919608.png") no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signIn > form{
+  width: 460px;
+  background: white;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding:20px;
+  position: relative;
+}
+.signIn > form > .close{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: #007bff;
+  font-size: 1.2em;
+}
+.signIn > form > h2{
+  font-size: 28px;
+  color: #007bff;
+}
+.signIn > form > p{
+  color: #007bff;
+  font-style: italic;
+  font-size: 13px;
+  text-align: right;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+.signIn > form > .row{
+  margin-bottom: 16px;
+}
+.signIn > form > .row > label{
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #343a40;
+}
+.signIn > form > .row > input{
+  width: 100%;
+  color: #495057;
+  line-height: 1.5;
+  padding: 8px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+.signIn > form > .actions > button[type=submit]{
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 8px;
+  background: #007bff;
+  border-style: none;
+  color: white;
+}
+.signIn > form > .actions > button[type=submit]:hover{
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+.signIn > form > .actions > p{
+  color: #6c757d;
+  margin-top: 5px;
+  font-size: .7em;
+  font-weight: 400;
+}
+
+.signIn .toSignUp{
+  width: 460px;
+  background: white;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding:18px;
+  text-align: center;
+  margin-top: 20px;
+  color: #343a40;
+  font-size: .9em;
+}
+.signIn a{
+  color: #007bff;
+}
+.signIn a:hover{
+  border-bottom: 1px solid #007bff;
+}
